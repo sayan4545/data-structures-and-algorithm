@@ -71,32 +71,26 @@ public class basics {
         Supplier<String> givehelloWorld = () -> "hello World";
         String str = givehelloWorld.get();
         System.out.println(str);
-
         Predicate<Integer> predicate2 = x -> x%2==0;
         Consumer<Integer> consumer = x -> System.out.println(x);
         Supplier<Integer> supplier = () -> 10;
         Function<Integer,Integer> function = x -> x*x;
-
         if(predicate2.test(supplier.get())){
             consumer.accept(function.apply(supplier.get()));
         }
         BiPredicate<Integer,Integer> isSumEven = (x,y) -> (x+y) %2 == 0;
         System.out.println(isSumEven.test(8,8));
-
         BiPredicate<Integer,Integer> isSumOdd = (x,y) -> (x-y) %2 != 0;
         System.out.println(isSumOdd.test(7, 1)); // should give false
         UnaryOperator<Integer> lengthOfString = x -> x*2;
         System.out.println(lengthOfString.apply(6));//12
-
         BinaryOperator<Integer> binary = (x, y) -> (x + y);
         System.out.println(binary.apply(6, 9));//15
-
         // Method reference
-
         List<String> l1 = Arrays.asList("Ram", "Shyam", "Ghanasyam");
         l1.forEach(x -> System.out.println(x));
         l1.forEach(System.out:: println);
-
+        // Streams from java 1.8
         List<String> names = Arrays.asList("A","B","C");
         List<Mobile> mobilePhones = names.stream().map(Mobile :: new).collect(Collectors.toList());
         System.out.println(mobilePhones);
@@ -107,8 +101,12 @@ public class basics {
         String[] array = {"a","b","c","d","e"};
         Stream<String> stream1 = Arrays.stream(array);
         System.out.println(stream1.toList());
-        System.out.println(Arrays.toString(array));                    
-        
+        System.out.println(Arrays.toString(array));
+        // infinite stream generation..
+        Stream<Integer> streamInt = Stream.generate(() -> 1).limit(10);    
+        System.out.println(streamInt.toList());
+        Stream<Integer> generate = Stream.iterate(1,x -> x + 1).limit(10);
+        System.out.println(generate.toList());
     }    
 }
 class Mobile{
