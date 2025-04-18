@@ -1,5 +1,3 @@
-
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -17,11 +15,20 @@ public class LevelOrderTraversal{
     public static void lot(Node node){
         Queue<Node> queue = new LinkedList<>();
         queue.add(node);
-
+        queue.add(null);
         while(!queue.isEmpty()){
             Node  temp = queue.peek();
             queue.poll();
-            System.out.print(temp.data +" ");
+
+            if(temp == null){
+                System.out.println();
+                if(!queue.isEmpty()){
+                    queue.add(null);
+                }
+            }
+            else{
+                 System.out.print(temp.data +" ");
+            
             if(temp.left != null){
                 queue.add(temp.left);
             }
@@ -30,7 +37,9 @@ public class LevelOrderTraversal{
             }
         }
 
-
+            
+           
+        }
     }
     static class Node{
         public int data;
