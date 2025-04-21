@@ -16,6 +16,28 @@ public class LowestCommonAncestor{
         }
 
     }
+    public boolean findKthAncestor(TreeNode node,int k,TreeNode p){
+        // base case
+        if(node == null){
+            return false;
+        }
+        if(node.val == p.val){
+            return true;
+        }
+
+        boolean leftAns = findKthAncestor(node.left, k, p);
+        boolean rightAns = findKthAncestor(node.right,k,p);
+
+        if(leftAns || rightAns){
+            k--;
+        }
+        if(k==0){
+            k = -1;
+            System.out.println(node.val);
+            
+        }
+        return leftAns || rightAns;
+    }
 }
 
 class TreeNode {
