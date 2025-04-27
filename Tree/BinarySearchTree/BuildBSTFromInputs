@@ -4,10 +4,9 @@ public class BuildBSTFrominputs{
     }
     public static Node insertBST(Node root, int data){
         if(root == null){
-            Node root = new Node(data);
+            root = new Node(data);
             return root;
         }
-
         else if(root.val > data){
             root.left = insertBST(root.left,data);
         }
@@ -23,6 +22,7 @@ public class BuildBSTFrominputs{
             root = insertBST(root, data);
             data = sc.nextInt();
         }
+        return root;
     }
     static class Node{
         int val;
@@ -35,5 +35,4 @@ public class BuildBSTFrominputs{
             this.left = null;
         }
     } 
-
 }
